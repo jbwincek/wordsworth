@@ -20,19 +20,22 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 from __future__ import print_function # for Python 2 backwards compatibility
-import re
+from blessings import Terminal
 import collections
+import re
 
-# Font effects --> fancy console colours in bash
-underline = "\x1b[1;4m"
-black = "\x1b[1;30m"
-red = "\x1b[1;31m"
-green = "\x1b[1;32m"
-yellow = "\x1b[1;33m"
-blue = "\x1b[1;34m"
-purple = "\x1b[1;35m"
-turquoise = "\x1b[1;36m"
-normal = "\x1b[0m"
+# Blessings for terminal colors
+term  = Terminal()
+underline = term.underline
+black = term.black
+red = term.red
+green = term.green
+yellow = term.yellow
+blue = term.blue
+purple = term.purple
+turquoise = term.turquoise
+normal = term.normal
+
 
 
 class wordsworth:
