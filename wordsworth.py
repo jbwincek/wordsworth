@@ -91,7 +91,6 @@ class wordsworth:
             n = len(m[0][0].split(' '))
 
             print('\n===' + blue + ' Commonest ' + str(n) + '-words' + normal + '===')
-            self.out.write('\n=== Commonest ' + str(n) + '-words ===\n')
 
             for i in range(0, min(unique_entries, args.top_n)):
                 n_word = m[i][0]
@@ -102,55 +101,31 @@ class wordsworth:
                     normal + ' (' + purple + str(count).split('.')[0] + normal +
                     ' = ' + purple + str(perc)[:5] + '%' + normal + ')'))
 
-                self.out.write(str(i + 1) + ' = ' + n_word + ' (' + str(count).split('.')[0] +
-                ' = ' + str(perc)[:5] + '%)\n')
-
 
     def print_results(self):
-        self.out = open(args.inputfile.split('.')[0] + '-stats.txt', 'w')
-
         print('\n===' + blue + ' RESULTS ' + normal + '===')
-        self.out.write('=== RESULTS ===\n')
 
         print('File = ' + purple + str(args.inputfile) + normal)
-        self.out.write('File = ' + str(args.inputfile) + '\n')
-
         print('Longest word = ' + purple + str(self.word_stats['longest_word']) + normal +
             ' (' + purple + str(self.word_stats['max_length']) + normal + ')')
-
-        self.out.write('Longest word = ' + str(self.word_stats['longest_word']) +
-            ' (' + str(self.word_stats['max_length']) + ')\n')
 
         print('Shortest word = ' + purple + str(self.word_stats['shortest_word']) + normal +
             ' (' + purple + str(self.word_stats['min_length']) + normal + ')')
 
-        self.out.write('Shortest word = ' + str(self.word_stats['shortest_word']) +
-            ' (' + str(self.word_stats['min_length']) + ')\n')
-
         print('Mean word length /chars = ' + purple + str(self.word_stats['mean_length']) +
                 normal)
-
-        self.out.write('Mean word length /chars = ' + str(self.word_stats['mean_length']) + '\n')
 
         print('Total words parsed = ' + purple +
                 str(self.word_stats['total_words']).split('.')[0] + normal)
 
-        self.out.write('Total words parsed = ' +
-                str(self.word_stats['total_words']).split('.')[0] + '\n')
-
         print('Total chars parsed = ' + purple + str(self.word_stats['total_chars']) +
                 normal)
-
-        self.out.write('Total chars parsed = ' + str(self.word_stats['total_chars']) + '\n')
 
         for i in range(self.max_n_word):
             self.print_n_word_frequencies(self.counters[i])
 
         total_dev = 0.0
-
         print('\n===' + blue + ' FREQUENCY ANALYSIS ' + normal + '===')
-        self.out.write('\n=== FREQUENCY ANALYSIS ===\n')
-
         for char in sorted(iter(self.word_stats['char_percentages'])):
             bar = ''
             perc = self.word_stats['char_percentages'][char]
@@ -161,17 +136,10 @@ class wordsworth:
 
             for i in range(0, int(perc)):
                 bar += '#'
-
             print(char + ' |' + red + bar + normal + ' ' + str(perc)[:4] +
                     '% (' + str(dev)[:4] + '% deviation from random)')
 
-            self.out.write(char + ' |' + bar + ' ' + str(perc)[:4] + '% (' +
-                    str(dev)[:4] + '% deviation from random)\n')
-
         print('\nTotal percentage deviation from random = ' +
-                str(total_dev).split('.')[0] + '%')
-
-        self.out.write('\nTotal percentage deviation from random = ' +
                 str(total_dev).split('.')[0] + '%')
 
         average_dev = total_dev / 26.0
@@ -179,16 +147,9 @@ class wordsworth:
         print('Average percentage deviation from random = ' +
                 str(average_dev)[:4] + '%')
 
-        self.out.write('\nAverage percentage deviation from random = ' +
-                str(average_dev)[:4] + '%')
-
         print('Lexical density = ' + str(self.word_stats['lexical_density'])[:5] + '%')
 
-        self.out.write('\nLexical density = ' + str(self.word_stats['lexical_density'])[:5] + '%')
-
         print('\nWritten results to ' + args.inputfile.split('.')[0] + '-stats.txt\n')
-
-        self.out.close()
     
     
     def init_word_counters(self):
